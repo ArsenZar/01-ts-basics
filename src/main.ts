@@ -1,11 +1,20 @@
-enum Role {
-  Admin = "ADMIN",
-  User = "USER",
-  Guest = "GUEST"
+interface List<T> {
+  items: T[];
+  getItem: (index: number) => T;
 }
 
-const getRoleName = (role: Role) => {
-  return `Your role is: ${role}`;
-}
+const numberList: List<number> = {
+  items: [1, 2, 3],
+  getItem(index) {
+    return this.items[index];
+  },
+};
 
-console.log(getRoleName(Role.Admin)); // "Your role is: ADMIN"
+const stringList: List<string> = {
+  items: ['Alice', 'Bob'],
+  getItem(index) {
+    return this.items[index];
+  },
+};
+
+console.log(numberList.getItem(2));
