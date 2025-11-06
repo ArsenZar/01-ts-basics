@@ -18,3 +18,4 @@ const stringList: List<string> = {
 };
 
 console.log(numberList.getItem(2));
+console.log(stringList.getItem(2));
