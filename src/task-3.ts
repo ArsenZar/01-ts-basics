@@ -1,8 +1,13 @@
-const usernames = ["alice", "bob", "charlie"];
+const usernames: string[] = ["alice", "bob", "charlie"];
 
-const ratings = [4.5, 3.8, 5];
+const ratings: number[] = [4.5, 3.8, 5];
 
-const products = [
+interface Products {
+    id: number;
+    title: string;
+}
+
+const products: Products[] = [
     { id: 1, title: "Phone" },
     { id: 2, title: "Laptop" },
 ];
