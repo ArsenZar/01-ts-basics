@@ -1,21 +1,22 @@
-interface List<T> {
-  items: T[];
-  getItem: (index: number) => T;
+interface ApiResponse<T> {
+  data: T;
+  status: number;
 }
 
-const numberList: List<number> = {
-  items: [1, 2, 3],
-  getItem(index) {
-    return this.items[index];
+const userResponse: ApiResponse<{ id: number; name: string; }> = {
+  data: {
+    id: 1,
+    name: 'Alice',
   },
+  status: 200,
 };
 
-const stringList: List<string> = {
-  items: ['Alice', 'Bob'],
-  getItem(index) {
-    return this.items[index];
+const invoiceResponse: ApiResponse<{ email: string; amount: number; }> = {
+  data: {
+    email: 'alice@mail.com',
+    amount: 150,
   },
+  status: 201,
 };
 
-console.log(numberList.getItem(2));
-console.log(stringList.getItem(2));
+console.log(userResponse);
