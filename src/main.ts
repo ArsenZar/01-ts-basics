@@ -23,11 +23,33 @@
 
 // ПОВНІСТЮ ВСЕ РОЗУМІННЯ ГЕНЕРИКІВ ТА ПРОМІСІВ
 
-function resolveAfterDelay<T>(value: T, delay: number): Promise<T> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(value), delay);
-  });
+// function resolveAfterDelay<T>(value: T, delay: number): Promise<T> {
+//   return new Promise((resolve) => {
+//     setTimeout(() => resolve(value), delay);
+//   });
+// }
+
+// resolveAfterDelay<string>("Hello", 1000).then(console.log);
+// resolveAfterDelay<number>(123, 500).then(console.log);
+
+import axios from "axios";
+const API = "https://jsonplaceholder.typicode.com";
+
+interface Post { id: number; userId: number; title: string; body: string; }
+
+async function fetchPosts(): Promise<Post[]> {
+  const res = await axios.get<Post[]>(
+    `${API}/posts`
+  );
+  return res.data;
 }
 
-resolveAfterDelay<string>("Hello", 1000).then(console.log);
-resolveAfterDelay<number>(123, 500).then(console.log);
+// first type work with respone
+const posts: Post[] = await fetchPosts();
+console.log(posts[0].title);
+
+// second type work with respone
+fetchPosts().then(ps => {
+  console.log("posts:", ps);  
+});
+
